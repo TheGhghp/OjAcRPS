@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=myMoves\ opponentMoves\ myScore\ opponentScore
+comment0.target=char\ move(char[],\ char[],\ int,\ int)
+comment0.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\ You\ must\ create\ some\ kind\ of\ logic\ of\ what\ to\ play\ against\ your\ opponent...start\ researching,\r\n\ driver\ code\ to\ be\ provided\ TUESDAY,\ 2/28\r\n\ \r\n\ @return\ \ \ \ \ \ the\ move\ you\ want\ to\ play\ against\ opponent\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ 'r'\ -\ rock\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ 'p'\ -\ paper\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ 's'\ -\ scissors\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ anything\ else\ -\ forfeit\ the\ turn\r\n
+comment1.params=
+comment1.target=char\ strat0()
+comment1.text=\r\n\ 33%\ chance\ rock,\ paper,\ or\ scissor\r\n
+numComments=2

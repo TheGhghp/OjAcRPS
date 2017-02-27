@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.params=myMoves\ opponentMoves\ myScore\ opponentScore
+comment0.target=char\ move(char[],\ char[],\ int,\ int)
+numComments=1
