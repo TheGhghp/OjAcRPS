@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.text.DecimalFormat;
 /**
  * Each player or team will create their own Player, this is only an example....
  * 
@@ -88,10 +89,10 @@ public class MyPlayer implements Player
         else{choiceN = 2;}
         choiceN += tier;
         choiceN %= 3;
-        return choiceSet[choiceN];        
+        return choiceSet[choiceN];
     }
     
-    public double[] getData()
+    public double[] getData(int rProb, int pProb, int sProb)
     {
         char p1; char p2;
         int win1 = 0; int win2 = 0;
@@ -99,8 +100,8 @@ public class MyPlayer implements Player
         double[] toRet = new double[2];
         for(int n = 0; n < total; n++)
         {
-            p1 = strat1(ratios(33,33,34));
-            p2 = strat1(ratios(33,33,34));
+            p1 = strat1(ratios(rProb, pProb, sProb));
+            p2 = strat1(ratios(rProb, pProb, sProb));
             if     (p1 == 'r' && p2 == 'p'){win2++;}
             else if(p1 == 'r' && p2 == 's'){win1++;}
             else if(p1 == 'p' && p2 == 'r'){win1++;}
@@ -114,18 +115,20 @@ public class MyPlayer implements Player
         return toRet;
     }
     
-    public void getAvgData()
+    public String getAvgData(int rProb, int pProb, int sProb)
     {
         int n = 1000;
         double sum1 = 0; double sum2 = 0;
         double[] temp = new double[2];
         for(int m = 0; m < n; m++)
         {
-            temp = getData();
+            temp = getData(rProb, pProb, sProb);
             sum1 += temp[0];
             sum2 += temp[1];
         }
-        System.out.println("(" + sum1/1000.0 + ", " + sum2/1000.0 + ")");
+        String str1 = new DecimalFormat("#.##").format(sum1/n);
+        String str2 = new DecimalFormat("#.##").format(sum2/n);
+        return "(" + str1 + ", " + str2 + ")";
     }
     
     public char[] ratios(int r, int p, int s)
@@ -144,5 +147,36 @@ public class MyPlayer implements Player
             toRet[n] = 's';
         }
         return toRet;
+    }
+    
+    public String[][] manyAverages()
+    {
+        int[] tens = {33, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+        String[][] data = new String[12][12];
+        int p1, p2;
+        for (int r = 0; r < data.length; r++)
+        {
+            for (int c = 0; c < data[0].length; c++)
+            {
+                p1 = tens[r];
+                p2 = tens[c];
+                if (p1 + p2 > 100)
+                {
+                    data[r][c] = "n/a";
+                } else
+                {
+                    data[r][c] = getAvgData(tens[r], tens[c], 100 - tens[r] - tens[c]);
+                }
+            }
+        }
+        for (String[] n : data)
+        {
+            for (String m : n)
+            {
+                System.out.print(m + ", ");
+            }
+            System.out.println();
+        }
+        return data;
     }
 }
